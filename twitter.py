@@ -11,7 +11,18 @@ class TwitterStreamListener(tweepy.StreamListener):
         self.tweets = []
 
     def on_status(self, status):
-        print(status)
+        # accomodating weird twitter text truncation
+        try:
+            print(status._json['retweeted_status']['extended_tweet']['full_text'])
+        except KeyError:
+            try:
+                print(status._json['retweeted_status']['text'])
+            except KeyError:
+                try:
+                    print(status._json['extended_tweet']['full_text'])
+                except KeyError:
+                    print(status.text)
+
         self.tweets.append(status)
         if (time.time() - self.start_time) > self.limit:
             return False
@@ -32,7 +43,11 @@ def get_twitter_scores(keyphrases):
     api = tweepy.API(auth)
 
     listener = TwitterStreamListener(time_limit=30)
-    stream = tweepy.Stream(auth=api.auth, listener=listener)
+    stream = tweepy.Stream(
+        auth=api.auth, 
+        listener=listener, 
+        tweet_mode='extended'
+    )
 
     stream.filter(track=keyphrases, languages=['en'])
 
