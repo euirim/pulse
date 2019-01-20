@@ -11,7 +11,7 @@ class Record(TimedModel):
         db_index=True,
         on_delete=models.PROTECT
     )
-    data = JSONField()
+    payload = JSONField()
 
     def __str__(self):
         return '{0} {1}'.format(

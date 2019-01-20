@@ -15,3 +15,6 @@ DATABASES = {
         'PORT': 5432,
     }
 }
+
+# Static files
+STATIC_ROOT = os.path.join(BASE_DIR, "../assets")
