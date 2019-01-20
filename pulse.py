@@ -18,12 +18,16 @@ class KeyphrasePool:
         # to prevent API problems
         assert len(keyphrases) < 100
 
+        keyphrases = list(map(str.lower, keyphrases))
+
         # get Twitter scores
         twitter_scores = get_twitter_scores(keyphrases)
 
         # TODO: get scores from Facebook
         # TODO: get scores from Instagram
         # TODO: get scores from Reddit
+
+        print(keyphrases)
         
         for kp in keyphrases:
             self.keyphrases.append(
@@ -42,8 +46,6 @@ class KeyphrasePool:
         Return a list of tuples, each with a keyword and its 
         associated score.
         """
-        assert len(self.keyphrases) > 0
-
         scores = []
         for kp in self.keyphrases:
             scores.append((kp.name, kp.twitter))
