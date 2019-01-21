@@ -107,3 +107,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+# Application Specific Settings
+PULSE_CHECK_FREQUENCY = 3595 # subtract 5 seconds for stream connection leeway

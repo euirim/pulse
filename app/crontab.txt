@@ -1,0 +1,1 @@
+0 */1 * * * /code/record.sh >> /var/log/record_pulse.log

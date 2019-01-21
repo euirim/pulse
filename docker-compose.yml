@@ -14,7 +14,7 @@ services:
       - web
   web:
     build: ./app/
-    command: bash -c "pipenv install; pipenv run gunicorn config.wsgi:application -w 2 -b :8000"
+    command: bash -c "pipenv install; pipenv run gunicorn config.wsgi:application -w 2 -b :8000 --daemon; ./entry.sh"
     volumes:
       - ./app:/code
     expose:

@@ -1,4 +1,5 @@
 from django.core.management.base import BaseCommand, CommandError
+from django.conf import settings
 
 from records.models import Record
 from keyphrases.models import Keyphrase
@@ -19,7 +20,9 @@ class Command(BaseCommand):
 
         keyphrases = [k.name for k in keyphrase_objects]
 
-        pool = KeyphraseRecordPool(collection_interval=3600)
+        pool = KeyphraseRecordPool(
+            collection_interval=settings['PULSE_CHECK_FREQUENCY']
+        )
         pool.fill(keyphrases)
         for record in pool.keyphrase_records:
             keyphrase = Keyphrase.objects.get(name__iexact=record.keyphrase)
