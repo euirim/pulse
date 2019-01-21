@@ -18,10 +18,14 @@ class Command(BaseCommand):
         elif len(keyphrase_objects) > 100:
             raise CommandError('More keyphrases than safe for API.')
 
-        keyphrases = [k.name for k in keyphrase_objects]
+        keyphrases = [
+            (k.name, k.aliases)
+            if k.aliases else (k.name, [])
+            for k in keyphrase_objects
+        ]
 
         pool = KeyphraseRecordPool(
-            collection_interval=settings['PULSE_CHECK_FREQUENCY']
+            collection_interval=settings.PULSE_CHECK_FREQUENCY
         )
         pool.fill(keyphrases)
         for record in pool.keyphrase_records:

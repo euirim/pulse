@@ -94,7 +94,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Chicago'
 
 USE_I18N = True
 
@@ -110,4 +110,4 @@ STATIC_URL = '/static/'
 
 
 # Application Specific Settings
-PULSE_CHECK_FREQUENCY = 3595 # subtract 5 seconds for stream connection leeway
+PULSE_CHECK_FREQUENCY = 3595  # subtract 5 seconds for stream connection leeway

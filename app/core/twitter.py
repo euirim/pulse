@@ -48,8 +48,8 @@ class TwitterStreamListener(tweepy.StreamListener):
     def get_records(self, keyphrases):
         records = {}
         for kp in keyphrases:
-            records[kp] = TwitterRecord(
-                keyphrase=kp,
+            records[kp[0]] = TwitterRecord(
+                keyphrase=kp[0],
                 tweet_count=0,
                 fav_count=0,
                 retweet_count=0,
@@ -59,11 +59,11 @@ class TwitterStreamListener(tweepy.StreamListener):
         for tweet in self.tweets: 
             tweet_text = extract_status_text(tweet).lower()
             for kp in keyphrases:
-                if kp in tweet_text:
-                    records[kp].tweet_count += 1
-                    records[kp].fav_count += tweet.retweet_count
-                    records[kp].retweet_count += tweet.favorite_count
-                    records[kp].reply_count += tweet.reply_count
+                if any(k in tweet_text for k in ([kp[0]] + kp[1])):
+                    records[kp[0]].tweet_count += 1
+                    records[kp[0]].fav_count += tweet.retweet_count
+                    records[kp[0]].retweet_count += tweet.favorite_count
+                    records[kp[0]].reply_count += tweet.reply_count
 
         return records
 
@@ -101,7 +101,10 @@ def get_twitter_data(keyphrases, collection_interval):
         listener=listener 
     )
 
-    stream.filter(track=keyphrases, languages=['en'])
+    stream.filter(
+        track=map(lambda x: x[0], keyphrases), 
+        languages=['en']
+    )
 
     records = listener.get_records(keyphrases)
 

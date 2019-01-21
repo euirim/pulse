@@ -1,0 +1,42 @@
+[
+    {
+        "name": "Donald Trump",
+        "aliases": ["@realDonaldTrump"]
+    },
+    {
+        "name": "Elizabeth Warren",
+        "aliases": ["@ewarren", "@senwarren"]
+    },
+    {
+        "name": "Bernie Sanders",
+        "aliases": ["@berniesanders", "@sensanders"]
+    },
+    {
+        "name": "Kamala Harris",
+        "aliases": ["@kamalaharris", "@senkamalaharris"]
+    },
+    {
+        "name": "Beto O'Rourke",
+        "aliases": ["@betoorourke", "@repbetoorourke"]
+    },
+    {
+        "name": "Joe Biden",
+        "aliases": ["@joebiden"]
+    },
+    {
+        "name": "Kirsten Gillibrand",
+        "aliases": ["@gillibrandny", "sengillibrand"]
+    },
+    {
+        "name": "Cory Booker",
+        "aliases": ["@corybooker", "@senbooker"]
+    },
+    {
+        "name": "Amy Klobuchar",
+        "aliases": ["@amyklobuchar", "@senamyklobuchar"]
+    },
+    {
+        "name": "Sherrod Brown",
+        "aliases": ["@sherrodbrown", "@sensherrodbrown"]
+    }
+]

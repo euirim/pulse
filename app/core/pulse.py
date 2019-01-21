@@ -19,13 +19,14 @@ class KeyphraseRecordPool:
         # to prevent API problems
         assert len(keyphrases) < 100
 
-        keyphrases = list(map(str.lower, keyphrases))
+        keyphrases = list(map(lambda x: (x[0].lower(), x[1]), keyphrases))
 
         # get Twitter scores
         twitter_data = get_twitter_data(
             keyphrases, 
             self.collection_interval
         )
+        print(twitter_data)
 
         # TODO: get keyphrase data from Facebook
         # TODO: get keyphrase data from Instagram
@@ -34,9 +35,9 @@ class KeyphraseRecordPool:
         for kp in keyphrases:
             self.keyphrase_records.append(
                 KeyphraseRecord(
-                    keyphrase=kp,
+                    keyphrase=kp[0],
                     fb={},
-                    twitter=twitter_data[kp],
+                    twitter=twitter_data[kp[0]],
                     instagram={},
                     reddit={}
                 )

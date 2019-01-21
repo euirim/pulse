@@ -14,5 +14,3 @@ RUN pip install pipenv
 
 RUN chmod 755 /code/record.sh /code/entry.sh
 RUN /usr/bin/crontab crontab.txt
-
-CMD /usr/sbin/crond -f
