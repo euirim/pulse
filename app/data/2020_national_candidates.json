@@ -5,38 +5,98 @@
     },
     {
         "name": "Elizabeth Warren",
-        "aliases": ["@ewarren", "@senwarren"]
+        "aliases": ["@ewarren", "@SenWarren"]
     },
     {
         "name": "Bernie Sanders",
-        "aliases": ["@berniesanders", "@sensanders"]
+        "aliases": ["@BernieSanders", "@SenSanders"]
     },
     {
         "name": "Kamala Harris",
-        "aliases": ["@kamalaharris", "@senkamalaharris"]
+        "aliases": ["@KamalaHarris", "@SenKamalaHarris"]
     },
     {
         "name": "Beto O'Rourke",
-        "aliases": ["@betoorourke", "@repbetoorourke"]
+        "aliases": ["@BetoORourke", "@RepBetoORourke"]
     },
     {
         "name": "Joe Biden",
-        "aliases": ["@joebiden"]
+        "aliases": ["@JoeBiden"]
     },
     {
         "name": "Kirsten Gillibrand",
-        "aliases": ["@gillibrandny", "sengillibrand"]
+        "aliases": ["@gillibrandny", "@SenGillibrand"]
     },
     {
         "name": "Cory Booker",
-        "aliases": ["@corybooker", "@senbooker"]
+        "aliases": ["@CoryBooker", "@SenBooker"]
     },
     {
         "name": "Amy Klobuchar",
-        "aliases": ["@amyklobuchar", "@senamyklobuchar"]
+        "aliases": ["@AmyKlobuchar", "@SenAmyKlobuchar"]
     },
     {
         "name": "Sherrod Brown",
-        "aliases": ["@sherrodbrown", "@sensherrodbrown"]
+        "aliases": ["@SherrodBrown", "@SenSherrodBrown"]
+    },
+    {
+        "name": "Andrew Yang",
+        "aliases": ["@AndrewYangVFA"]
+    },
+    {
+        "name": "John Delaney",
+        "aliases": ["@RepJohnDelaney", "@JohnKDelaney"]
+    },
+    {
+        "name": "Tulsi Gabbard",
+        "aliases": ["@TulsiGabbard", "@TulsiPress"]
+    },
+    {
+        "name": "Julian Castro",
+        "aliases": ["@JulianCastro"]
+    },
+    {
+        "name": "John Hickenlooper",
+        "aliases": ["@hickforco"]
+    },
+    {
+        "name": "Richard Ojeda",
+        "aliases": ["@VoteOjeda2020"]
+    },
+    {
+        "name": "Steve Bullock",
+        "aliases": ["@GovernorBullock"]
+    },
+    {
+        "name": "Eric Garcetti",
+        "aliases": ["@tulsigabbard", "@tulsipress"]
+    },
+    {
+        "name": "Michael Bloomberg",
+        "aliases": ["@MikeBloomberg"]
+    },
+    {
+        "name": "Jay Inslee",
+        "aliases": ["@JayInslee", "@GovInslee"]
+    },
+    {
+        "name": "Mitch Landrieu",
+        "aliases": ["@MitchLandrieu"]
+    },
+    {
+        "name": "Terry McAuliffe",
+        "aliases": ["@TerryMcAuliffe"]
+    },
+    {
+        "name": "Jeff Merkley",
+        "aliases": ["@JeffMerkley", "@SenJeffMerkley"]
+    },
+    {
+        "name": "Hillary Clinton",
+        "aliases": ["@HillaryClinton"]
+    },
+    {
+        "name": "Alexandria Ocasio-Cortez",
+        "aliases": ["@AOC", "@RepAOC"]
     }
 ]
