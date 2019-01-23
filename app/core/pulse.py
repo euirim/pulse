@@ -26,7 +26,6 @@ class KeyphraseRecordPool:
             keyphrases, 
             self.collection_interval
         )
-        print(twitter_data)
 
         # TODO: get keyphrase data from Facebook
         # TODO: get keyphrase data from Instagram

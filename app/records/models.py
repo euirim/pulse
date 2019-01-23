@@ -6,15 +6,13 @@ from keyphrases.models import Keyphrase
 
 # Create your models here.
 class Record(TimedModel):
-    keyphrase = models.ForeignKey(
-        Keyphrase,
-        db_index=True,
-        on_delete=models.PROTECT
-    )
     payload = JSONField()
+    interval = models.PositiveIntegerField(
+        help_text=(
+            'The number of seconds in which data ' + 
+            'was recorded for this record.'
+        )
+    )
 
     def __str__(self):
-        return '{0} {1}'.format(
-            self.keyphrase.name, 
-            self.time_created
-        )
+        return '{}'.format(self.time_created)

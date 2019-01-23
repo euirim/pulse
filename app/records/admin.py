@@ -7,9 +7,8 @@ from .models import Record
 class RecordAdmin(admin.ModelAdmin):
     search_fields = ['pk']
     date_hierarchy = 'time_created'
-    autocomplete_fields = ['keyphrase']
 
-    list_display = ('keyphrase', 'time_created')
+    list_display = ('interval', 'time_created')
     list_select_related = True
     readonly_fields = ('time_created',)
 

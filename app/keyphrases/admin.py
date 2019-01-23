@@ -9,7 +9,7 @@ class KeyphraseAdmin(admin.ModelAdmin):
     search_fields = ('name',)
 
     list_display = ('name', 'time_created', 'active', 'display')
-    list_editable = ('display')
+    list_editable = ('display',)
     list_select_related = True
     readonly_fields = ('time_created',)
 

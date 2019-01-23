@@ -1,1 +1,1 @@
-0 * * * * /code/record.sh >> /var/log/record_pulse.log
+*/5 * * * * /code/record.sh >> /var/log/record_pulse.log

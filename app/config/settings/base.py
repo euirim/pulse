@@ -110,4 +110,5 @@ STATIC_URL = '/static/'
 
 
 # Application Specific Settings
-PULSE_CHECK_FREQUENCY = 3595  # subtract 5 seconds for stream connection leeway
+# Make sure to have a number that can divide a day evenly.
+PULSE_CHECK_FREQUENCY = 300  # subtract 5 seconds for stream connection leeway
