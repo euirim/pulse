@@ -28,8 +28,7 @@ class Command(BaseCommand):
             try:
                 keyphrase = Keyphrase.objects.get(name=kp['name'])
                 # add aliases
-                keyphrase.aliases = kp['aliases']
-                keyphrase.save()
+                keyphrase.update(aliases=kp['aliases'])
             except Keyphrase.DoesNotExist:
                 # create keyphrase
                 Keyphrase.objects.create(
