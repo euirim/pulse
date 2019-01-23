@@ -8,7 +8,8 @@ class KeyphraseAdmin(admin.ModelAdmin):
     date_hierarchy = 'time_created'
     search_fields = ('name',)
 
-    list_display = ('name', 'time_created', 'active')
+    list_display = ('name', 'time_created', 'active', 'display')
+    list_editable = ('display')
     list_select_related = True
     readonly_fields = ('time_created',)
 
