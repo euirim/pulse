@@ -1,1 +1,3 @@
-*/5 * * * * /code/record.sh >> /var/log/record_pulse.log
+0,10,20,30,40,50 * * * * /code/record.sh >> /var/log/record_pulse.log
+5,15,25,35,45,55 * * * * /code/record.sh >> /var/log/record_pulse.log
+0 0 * * * /code/consolidate.sh >> /var/log/consolidate.log

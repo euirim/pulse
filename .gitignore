@@ -105,3 +105,6 @@ venv.bak/
 
 # Collectstatic assets
 app/assets/
+
+# Exported records
+app/data/output.csv

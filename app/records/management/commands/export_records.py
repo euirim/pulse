@@ -1,8 +1,11 @@
 import datetime
+import pytz
 
 from django.core.management.base import BaseCommand, CommandError
 from django.conf import settings
 from django.db.models import F
+from django.utils import timezone
+from django.conf import settings
 
 import pandas as pd
 
@@ -23,11 +26,14 @@ class Command(BaseCommand):
         # identify base date
         earliest_record = Record.objects.earliest('time_created')
 
-        base_time = earliest_record.time_created
-        base_time.hour = 0
-        base_time.minute = 0
-        base_time.second = 0
-        base_time.microsecond = 0
+        base_time = datetime.datetime(
+            year=earliest_record.time_created.year,
+            month=earliest_record.time_created.month,
+            day=earliest_record.time_created.day,
+            tzinfo=pytz.timezone(settings.TIME_ZONE)
+        )
+
+        print(base_time)
 
         records = Record.objects.annotate(
             # in case of leap seconds (which may add an additional interval)
@@ -40,28 +46,39 @@ class Command(BaseCommand):
         keyphrases = Keyphrase.objects.filter(display=True).order_by('name')
         header_row = ['Date'] + [k.name for k in keyphrases]
 
-        result = []
+        output = []
         cur_time = base_time
-        while cur_time < datetime.timezone.now():
+        now = timezone.now()
+        while cur_time.day < now.day:
             records = Record.objects.filter(
                 time_created__gte=cur_time,
-                time_created__lt=cur_time + datetime.timedelta(day=1)
+                time_created__lt=cur_time + datetime.timedelta(days=1)
             )
             result = [0] * len(keyphrases)
 
             for record in records:
+                # To catch record in the process of being created
+                if 'keyphrases' not in record.payload:
+                    continue
+
                 kps = record.payload['keyphrases']
                 for i, k in enumerate(keyphrases):
                     if k.name in kps:
                         tweet_count = kps[k.name]['twitter']['tweet_count']
                         result[i] += tweet_count
 
-            result.append([cur_time] + result)
+            output.append([cur_time.replace(tzinfo=None)] + result)
             
-            cur_time += datetime.timedelta(day=1)
+            cur_time += datetime.timedelta(days=1)
 
         # Convert to dataframe
-        df = pd.DataFrame.from_records(result, columns=header_row)
+        df = pd.DataFrame.from_records(output, columns=header_row)
 
         # Save to disk
         df.to_csv(options['output_file'], index=False)
+
+        self.stdout.write(
+            self.style.SUCCESS(
+                'Successfully exported records.'
+            )
+        )
