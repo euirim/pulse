@@ -26,14 +26,23 @@ class Command(BaseCommand):
         # identify base date
         earliest_record = Record.objects.earliest('time_created')
 
-        base_time = datetime.datetime(
-            year=earliest_record.time_created.year,
-            month=earliest_record.time_created.month,
-            day=earliest_record.time_created.day,
-            tzinfo=pytz.timezone(settings.TIME_ZONE)
-        )
-
-        print(base_time)
+        # Make basetime midnight of the day of the earliest record
+        # in the relevant time zone.
+        my_tz = pytz.timezone(settings.TIME_ZONE)
+        base_date = timezone.localtime(earliest_record.time_created).date()
+        base_time = my_tz.localize(datetime.datetime(
+            year=base_date.year,
+            month=base_date.month,
+            day=base_date.day,
+        ))
+        # Make now the midnight of the current day
+        # in the relevant time zone.
+        now_date = timezone.localtime(timezone.now()).date()
+        now = my_tz.localize(datetime.datetime(
+            year=now_date.year,
+            month=now_date.month,
+            day=now_date.day,
+        ))
 
         records = Record.objects.annotate(
             # in case of leap seconds (which may add an additional interval)
@@ -48,8 +57,7 @@ class Command(BaseCommand):
 
         output = []
         cur_time = base_time
-        now = timezone.now()
-        while cur_time.day < now.day:
+        while cur_time < now:
             records = Record.objects.filter(
                 time_created__gte=cur_time,
                 time_created__lt=cur_time + datetime.timedelta(days=1)
@@ -75,7 +83,7 @@ class Command(BaseCommand):
         df = pd.DataFrame.from_records(output, columns=header_row)
 
         # Save to disk
-        df.to_csv(options['output_file'], index=False)
+        df.to_json(options['output_file'], orient='records')
 
         self.stdout.write(
             self.style.SUCCESS(

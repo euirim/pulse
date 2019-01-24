@@ -53,6 +53,8 @@ class TwitterStreamListener(tweepy.StreamListener):
                 reply_count=0
             )
 
+        print('Tweets Total Processed: {}'.format(len(self.tweets)))
+
         for tweet in self.tweets: 
             tweet_text = extract_status_text(tweet).lower()
             for kp in keyphrases:
