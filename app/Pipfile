@@ -13,6 +13,9 @@ django = "*"
 gunicorn = "*"
 psycopg2 = "*"
 pandas = "*"
+djangorestframework = "*"
+markdown = "*"
+django-filter = "*"
 
 [requires]
 python_version = "3.7"

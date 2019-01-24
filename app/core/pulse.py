@@ -64,10 +64,7 @@ class KeyphraseRecord:
 
     def serialize_payload(self):
         return {
-            'fb': self.fb,
             'twitter': self.twitter.serialize(),
-            'instagram': self.instagram,
-            'reddit': self.reddit
         }
 
 

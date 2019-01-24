@@ -16,12 +16,21 @@ Including another URLconf
 import os
 
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
+from rest_framework import routers
+
+from records.views import RecordViewSet
+
+router = routers.DefaultRouter()
+router.register(r'records', RecordViewSet, basename='record')
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api/', include(router.urls)),
+    path('api-browser/', include('rest_framework.urls'))
 ]
 
 if os.environ["PULSE_HOST_TYPE"] == "dev":
