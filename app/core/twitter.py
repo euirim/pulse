@@ -21,9 +21,6 @@ class TwitterRecord:
     def serialize(self):
         return {
             'tweet_count': self.tweet_count,
-            'fav_count': self.fav_count,
-            'retweet_count': self.retweet_count,
-            'reply_count': self.reply_count
         }
 
 
