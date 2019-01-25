@@ -107,4 +107,4 @@ venv.bak/
 app/assets/
 
 # Exported records
-app/data/output.csv
+app/data/output.json
