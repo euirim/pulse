@@ -56,13 +56,20 @@ class TwitterStreamListener(tweepy.StreamListener):
         print('Tweets Total Processed: {}'.format(len(self.tweets)))
 
         for tweet in self.tweets: 
+            recorded = False
             tweet_text = extract_status_text(tweet).lower()
             for kp in keyphrases:
                 if any(k.lower() in tweet_text for k in ([kp[0]] + kp[1])):
+                    recorded = True
                     records[kp[0]].tweet_count += 1
                     records[kp[0]].fav_count += tweet.retweet_count
                     records[kp[0]].retweet_count += tweet.favorite_count
                     records[kp[0]].reply_count += tweet.reply_count
+
+            if not recorded:
+                print('TWEET NOT RECORDED:')
+                print(tweet_text)
+                print('-' * 60)
 
         return records
 
