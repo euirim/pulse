@@ -18,3 +18,7 @@ DATABASES = {
 
 # Static files
 STATIC_ROOT = os.path.join(BASE_DIR, "../assets")
+
+
+# CORS Headers
+CORS_ORIGIN_ALLOW_ALL = True
