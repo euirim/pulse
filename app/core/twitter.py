@@ -57,7 +57,7 @@ class TwitterStreamListener(tweepy.StreamListener):
 
         for tweet in self.tweets: 
             recorded = False
-            tweet_text = extract_status_text(tweet).lower()
+            tweet_text = extract_total_status_text(tweet).lower()
             for kp in keyphrases:
                 if any(k.lower() in tweet_text for k in ([kp[0]] + kp[1])):
                     recorded = True
@@ -68,26 +68,52 @@ class TwitterStreamListener(tweepy.StreamListener):
 
             if not recorded:
                 print('TWEET NOT RECORDED:')
-                print(tweet_text)
+                print(tweet.text)
                 print('-' * 60)
 
         return records
 
 
-def extract_status_text(status):
+def extract_total_status_text(status):
     """
-    Get full text of given twitter status.
+    Get full text of given twitter status, along with the text of its 
+    immediately associated statuses (immediate retweets, immediate quotes).
+
+    'Immediate' in this context means that we do not examine a quoted tweets own quotes.
+    """
+    status_texts = []
+
+    # Get status text
+    try: 
+        status_texts.append(status._json['extended_tweet']['full_text'])
+    except KeyError:
+        status_texts.append(status.text) 
+        
+    # Get retweeted status text
+    try:
+        status_texts.append(
+            extract_status_text(status._json['retweeted_status'])
+        )
+    except KeyError:
+        pass 
+
+    # Get quoted status text
+    try:
+        status_texts.append(extract_status_text(status._json['quoted_status']))
+    except KeyError:
+        pass 
+
+    return " ".join(status_texts)
+
+
+def extract_status_text(status_json):
+    """
+    Get full text of given twitter status (in JSON).
     """
     try:
-        return status._json['retweeted_status']['extended_tweet']['full_text']
+        return status_json['extended_tweet']['full_text']
     except KeyError:
-        try:
-            return status._json['retweeted_status']['text']
-        except KeyError:
-            try:
-                return status._json['extended_tweet']['full_text']
-            except KeyError:
-                return status.text
+        return status_json['text'] 
 
 
 def get_twitter_data(keyphrases, collection_interval):
