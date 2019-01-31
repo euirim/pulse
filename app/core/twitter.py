@@ -33,7 +33,7 @@ class TwitterStreamListener(tweepy.StreamListener):
 
     def on_status(self, status):
         # accomodating weird twitter text truncation
-        status_text = extract_status_text(status)
+        status_text = extract_total_status_text(status)
 
         self.tweets.append(status)
         if (time.time() - self.start_time) > self.limit:
@@ -68,7 +68,7 @@ class TwitterStreamListener(tweepy.StreamListener):
 
             if not recorded:
                 print('TWEET NOT RECORDED:')
-                print(tweet.text)
+                print(tweet_text)
                 print('-' * 60)
 
         return records
