@@ -1,8 +1,8 @@
+import os
+
 from .base import *
 
-
 DEBUG = False
-
 
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
@@ -19,6 +19,15 @@ DATABASES = {
 
 # Static files
 STATIC_ROOT = os.path.join(BASE_DIR, "../assets")
+
+
+# Email
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'online@chicagomaroon.com'
+EMAIL_HOST_PASSWORD = os.environ['PULSE_ADMIN_EMAIL_PASSWORD']
+EMAIL_PORT = 587
 
 
 CORS_ORIGIN_WHITELIST = (

@@ -25,6 +25,10 @@ SECRET_KEY = '67g$0ouvkr#+#5r=sst-b78kt=tb9q6sb^3!*wp83v_=ah*zzz'
 ALLOWED_HOSTS = ['localhost']
 
 
+# Admins
+ADMINS = [('Euirim', 'euirim@gmail.com')]
+
+
 # Application definition
 
 INSTALLED_APPS = [
