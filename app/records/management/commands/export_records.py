@@ -3,6 +3,7 @@ import pytz
 import json
 
 from django.core.management.base import BaseCommand, CommandError
+from django.core.serializers.json import DjangoJSONEncoder
 from django.conf import settings
 from django.db.models import F
 from django.utils import timezone
@@ -81,15 +82,19 @@ class Command(BaseCommand):
         # serialize
         result = []
         for row in output:
-            record = {}
-            for i in range(len(row)):
+            record = {'Date': row[0].strftime('%m-%d-%Y')}
+            for i in range(1, len(row)):
                 record[header_row[i]] = row[i]
 
             result.append(record)
 
         # Save to disk
         with open(options['output_file'], 'w') as outfile:
-            json.dump(result, outfile)
+            json.dump(
+                result, 
+                outfile,
+                cls=DjangoJSONEncoder
+            )
 
         self.stdout.write(
             self.style.SUCCESS(
