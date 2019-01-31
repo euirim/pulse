@@ -18,6 +18,6 @@ class RecordViewSet(ViewSet):
         base_time = timezone.now() - datetime.timedelta(days=1)
         records = Record.objects.filter(
             time_created__gte=base_time
-        )
+        ).order_by('time_created')
         serializer = RecordSerializer(records, many=True)
         return Response(serializer.data)
