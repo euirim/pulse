@@ -1,13 +1,12 @@
 import datetime
 import pytz
+import json
 
 from django.core.management.base import BaseCommand, CommandError
 from django.conf import settings
 from django.db.models import F
 from django.utils import timezone
 from django.conf import settings
-
-import pandas as pd
 
 from records.models import Record
 from keyphrases.models import Keyphrase
@@ -79,11 +78,18 @@ class Command(BaseCommand):
             
             cur_time += datetime.timedelta(days=1)
 
-        # Convert to dataframe
-        df = pd.DataFrame.from_records(output, columns=header_row)
+        # serialize
+        result = []
+        for row in output:
+            record = {}
+            for i in range(len(row)):
+                record[header_row[i]] = row[i]
+
+            result.append(record)
 
         # Save to disk
-        df.to_json(options['output_file'], orient='records')
+        with open(options['output_file'], 'w') as outfile:
+            json.dump(result, outfile)
 
         self.stdout.write(
             self.style.SUCCESS(
