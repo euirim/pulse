@@ -26,6 +26,7 @@ services:
       - PULSE_TWITTER_CONSUMER_SECRET
       - PULSE_TWITTER_ACCESS_TOKEN 
       - PULSE_TWITTER_ACCESS_TOKEN_SECRET
+      - PULSE_HOST_TYPE
   db:
     image: postgres
 volumes:

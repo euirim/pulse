@@ -17,6 +17,7 @@ djangorestframework = "*"
 markdown = "*"
 django-filter = "*"
 django-cors-headers = "*"
+whitenoise = "*"
 
 [requires]
 python_version = "3.7"

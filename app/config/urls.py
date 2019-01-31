@@ -28,7 +28,7 @@ router = routers.DefaultRouter()
 router.register(r'records', RecordViewSet, basename='record')
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('clausewitz-wsj/', admin.site.urls),
     path('api/', include(router.urls)),
     path('api-browser/', include('rest_framework.urls'))
 ]
