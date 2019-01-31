@@ -65,7 +65,7 @@
     },
     {
         "name": "Eric Garcetti",
-        "aliases": ["@tulsigabbard", "@tulsipress"]
+        "aliases": ["@ericgarcetti", "@MayorOfLA"]
     },
     {
         "name": "Michael Bloomberg",
@@ -90,6 +90,10 @@
     {
         "name": "Pete Buttigieg",
         "aliases": ["@PeteButtigieg"]
+    },
+    {
+        "name": "Howard Schultz",
+        "aliases": ["@HowardSchultz"]
     },
     {
         "name": "Hillary Clinton",
