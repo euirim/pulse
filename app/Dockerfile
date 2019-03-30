@@ -12,6 +12,6 @@ WORKDIR /code
 ADD . /code/
 RUN pip install pipenv
 
-RUN chmod 755 /code/record.sh /code/entry.sh
+RUN chmod 755 /code/record.sh /code/entry.sh /code/consolidate.sh
 
 ENV TZ America/Chicago
