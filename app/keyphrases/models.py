@@ -17,7 +17,7 @@ class Keyphrase(TimedModel):
     )
     display = models.BooleanField(
         default=False,
-        help_text="When checked, data is included in API responses."
+        help_text="When checked, the keyphrase is listed in the API."
     )
 
     def __str__(self):

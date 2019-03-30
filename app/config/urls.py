@@ -23,9 +23,11 @@ from django.conf.urls.static import static
 from rest_framework import routers
 
 from records.views import RecordViewSet
+from keyphrases.views import KeyphraseViewSet
 
 router = routers.DefaultRouter()
 router.register(r'records', RecordViewSet, basename='record')
+router.register(r'keyphrases', KeyphraseViewSet, basename='keyphrase')
 
 urlpatterns = [
     path('clausewitz-wsj/', admin.site.urls),
