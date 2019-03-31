@@ -7,6 +7,10 @@ server {
     location /api/consolidated-records/ {
         index output.json;
         alias /code/app/data/;
+        
+        if ($request_method = 'GET') {
+            add_header 'Access-Control-Allow-Origin' '*';
+        }
     }
 
     location / {
