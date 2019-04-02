@@ -22,11 +22,11 @@ services:
     depends_on:
       - "db"
     environment:
+      - PULSE_HOST_TYPE
       - PULSE_TWITTER_CONSUMER_TOKEN 
       - PULSE_TWITTER_CONSUMER_SECRET
       - PULSE_TWITTER_ACCESS_TOKEN 
       - PULSE_TWITTER_ACCESS_TOKEN_SECRET
-      - PULSE_HOST_TYPE
       - PULSE_ADMIN_EMAIL_PASSWORD
       - HOST_IP
   db:

@@ -98,5 +98,17 @@
     {
         "name": "Alexandria Ocasio-Cortez",
         "aliases": ["@AOC", "@RepAOC"]
+    },
+    {
+        "name": "Eric Swalwell",
+        "aliases": ["@ericswalwell", "@RepSwalwell"]
+    },
+    {
+        "name": "Bill Weld",
+        "aliases": ["@GovBillWeld"]
+    },
+    {
+        "name": "John Kasich",
+        "aliases": ["@JohnKasich"]
     }
 ]
