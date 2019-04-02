@@ -33,7 +33,9 @@ EMAIL_PORT = 587
 
 
 CORS_ORIGIN_WHITELIST = (
-    'euirim.org',
+    '*.euirim.org',
     'localhost',
-    'localhost:3000'
+    'localhost:3000',
+    'localhost:8000',
+    'projects.euirim.org.s3-website.us-east-2.amazonaws.com',
 )
