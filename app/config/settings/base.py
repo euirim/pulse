@@ -22,10 +22,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '67g$0ouvkr#+#5r=sst-b78kt=tb9q6sb^3!*wp83v_=ah*zzz'
 
-ALLOWED_HOSTS = [
-    'localhost', 
-    '.euirim.org',
-]
+ALLOWED_HOSTS = ['localhost']
 
 
 # Admins

@@ -4,7 +4,7 @@ from .base import *
 
 DEBUG = False
 
-ALLOWED_HOSTS = ['localhost', os.environ['HOST_IP']]
+ALLOWED_HOSTS = ['localhost', os.environ['HOST_IP'], '.euirim.org']
 
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
