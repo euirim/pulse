@@ -40,3 +40,13 @@ CORS_ORIGIN_WHITELIST = (
     'localhost:8000',
     'projects.euirim.org.s3-website.us-east-2.amazonaws.com',
 )
+
+# REST Framework
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticatedOrReadOnly',
+    ),
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',
+    )
+}
